@@ -1,7 +1,7 @@
-
+import "./Register.css";
 export const Register = () => {
   return (
-    <div>
+    <div className="registerDesign">
         soy register
     </div>
   )
