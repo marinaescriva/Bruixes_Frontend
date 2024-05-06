@@ -2,6 +2,9 @@ const root = "http://localhost:4000/api/"
 
 export const loginUser = async (credenciales) => {
 
+
+    try {
+        
     const options = {
         method: "POST",
         headers: {
@@ -9,8 +12,6 @@ export const loginUser = async (credenciales) => {
         },
         body: JSON.stringify(credenciales)
     }
-
-    try {
         const response = await fetch(`${root}auth/login`, options);
 
         const data = await response.json();

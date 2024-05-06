@@ -1,11 +1,13 @@
 import "./Header.css";
 import { Navigator } from "../Navigator/Navigator";
+import { useSelector } from "react-redux";
+import { userData } from "../../app/slices/userSlice";
 export const Header = () => {
 
-    const token = false;
-    const logOut = () => {
-        console.log("log out")
-    }
+    const rdxUser = useSelector(userData);
+ console.log(rdxUser , "rdxUser")
+ console.log(rdxUser.credenciales.token , "token")
+   console.log(rdxUser.credenciales.user.id_role , "id_role")
 
     return (
         <div className="headerDesign">
@@ -14,10 +16,10 @@ export const Header = () => {
             />
 
             {
-                token
+                rdxUser.credenciales.token
                     ? (<div>
 
-                        <Navigator title={"NICKNAME"} destination={"/profile"} />
+                        <Navigator title={rdxUser.credenciales.user.nombre} destination={"/profile"} />
                         <Navigator title={"LOG OUT"} onClick ={() => logOut()} />
 
                     </div>

@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { CInput } from '../../common/CInput/Cinput';
 import { CButton } from '../../common/CButton/CButton';
 import {validacion} from '../../utils/functions';
+import {decodeToken} from  'react-jwt';
+import {loginUser} from '../../services/apiCalls';
+import {login} from '../../app/slices/userSlice';
+import {useDispatch} from 'react-redux';	
+
 
 import { useNavigate } from "react-router-dom";
 import './Login.css'
@@ -9,6 +14,7 @@ import './Login.css'
 export const Login = () => {
 
 const navigate = useNavigate();
+const dispatch = useDispatch();
 
 const [credenciales, setCredenciales] = useState({
     email: "",
@@ -39,18 +45,27 @@ const checkError = (e) => {
     }))
   }
 
-const loginMe = async (credenciales) => {
+const loginMe = async () => {
     try {
-
+   
+        
         for (let elemento in credenciales) {
           if (credenciales[elemento] === "") {
             throw new Error("Todos los campos deben estar llenos")
           }
         }
-  
+      
         const fetched = await loginUser(credenciales)
-        console.log(fetched)
-  
+
+        const decodificado  = decodeToken(fetched.token) 
+
+        const passport = {
+            token: fetched.token,
+            user: decodificado
+        }
+
+        dispatch(login({ credenciales: passport }));
+
         setTimeout(() => {
           navigate("/")
         }, 800)
@@ -72,6 +87,7 @@ const loginMe = async (credenciales) => {
         onBlurFunction={(e) => checkError(e)}
         />
         <div className="error">{credencialesError.emailError}</div>
+
         <CInput 
         className={`inputDesign ${credencialesError.passwordError !== "" ? "inputDesignError" : ""}`}
         type={"password"}
