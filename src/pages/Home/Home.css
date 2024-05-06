@@ -1,0 +1,13 @@
+.homeDesign{
+    width: 100vw;
+    height: 88vh;
+
+    background-color: blueviolet;
+
+    color:chartreuse;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}

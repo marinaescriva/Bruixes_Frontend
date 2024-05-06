@@ -1,0 +1,19 @@
+.registerDesign{
+    width: 100vw;
+    height: 88vh;
+    overflow-x:hidden;
+    overflow-y: hidden;
+
+   
+    background-image: url('../../img/fondocolores.png');
+    /* background-size:cover; */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color:chartreuse;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
