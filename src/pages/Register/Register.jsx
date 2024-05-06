@@ -11,12 +11,17 @@ export const Register = () => {
   });
 
   const inputHandler = (e) => {
-    console.log(e.target.value)
+    
+    setUser(
+      (prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
   }
 
   return (
     <div className="registerDesign">
-
+      <pre>{JSON.stringify(user, null, 2)}  </pre>
       <CInput
         className={"inputDesign"}
         type={"text"}

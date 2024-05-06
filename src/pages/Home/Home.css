@@ -2,7 +2,10 @@
     width: 100vw;
     height: 88vh;
 
-    background-color: blueviolet;
+    background-image: url('../../img/fondocolores.png');
+    /* background-size:cover; */
+    background-position: center;
+    background-repeat: no-repeat;
 
     color:chartreuse;
 
