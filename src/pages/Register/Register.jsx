@@ -32,8 +32,12 @@ export const Register = () => {
   }
 
   const checkError = (e) => {
-    const error = validacion(e.target.name , e.target.value)
-    console.log(error)
+    const error = validacion(e.target.name , e.target.value);
+    
+    setUserError((prevState) => ({
+      ...prevState,
+      [e.target.name + "Error"] : error,
+    }))
   }
 
   const registerMe = async () => {
@@ -59,7 +63,7 @@ export const Register = () => {
     <div className="registerDesign">
 
       <CInput
-        className={"inputDesign"}
+        className={`inputDesign ${userError.nombreError !== "" ? "inputDesignError" : "" }`}
         type={"text"}
         name={"nombre"}
         placeholder={"nombre"}
@@ -67,9 +71,10 @@ export const Register = () => {
         onChangeFunction={(e) => inputHandler(e)}
         onBlurFunction={(e) => checkError(e)}
       />
-      {userError.nombreError}
+      <div className="error">{userError.nombreError}</div>
+
       <CInput
-        className={"inputDesign"}
+        className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : "" }`}
         type={"email"}
         name={"email"}
         placeholder={"email"}
@@ -77,9 +82,10 @@ export const Register = () => {
         onChangeFunction={(e) => inputHandler(e)}
         onBlurFunction={(e) => checkError(e)}
       />
-       {userError.emailError}
+       <div className="error">{userError.emailError}</div>
+
       <CInput
-        className={"inputDesign"}
+        className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : "" }`}
         type={"password"}
         name={"password"}
         placeholder={"password"}
@@ -87,7 +93,8 @@ export const Register = () => {
         onChangeFunction={(e) => inputHandler(e)}
         onBlurFunction={(e) => checkError(e)}
       />
-       {userError.passwordError}
+       <div className="error">{userError.passwordError}</div>
+
       <CButton
         className={"cButtonDesign"}
         title={"REGISTER"}

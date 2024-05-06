@@ -4,11 +4,24 @@
 
     border-radius: 0.8em;
     margin: 1em;
+    border: 0.2 solid rgba(135, 37, 20, 0);
 
     text-align: center;
     font-size: small;
 
+    color: rgb(54, 93, 132);
+
+}
+
+.inputDesignError{
+
     color: rgb(135, 37, 20);
-    /* color: rgb(54, 93, 132); */
+    border: 0.2 solid rgb(135, 37, 20);
+
+}
+
+.error{
+  color: rgb(135, 37, 20);
+  font-weight: bold;
 
 }
