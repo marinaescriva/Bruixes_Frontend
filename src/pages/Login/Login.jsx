@@ -3,7 +3,10 @@ import { CInput } from '../../common/CInput/Cinput';
 import { CButton } from '../../common/CButton/CButton';
 import {validacion} from '../../utils/functions';
 
+import { loginUser } from '../../services/apiCalls';
+
 import { useNavigate } from "react-router-dom";
+import { decodeToken } from 'react-jwt';
 import './Login.css'
 
 export const Login = () => {
@@ -49,7 +52,16 @@ const loginMe = async (credenciales) => {
         }
   
         const fetched = await loginUser(credenciales)
-        console.log(fetched)
+        const decodificado = decodeToken(fetched.token)
+
+        const passport = {
+            token: fetched.token,
+            decodificado: decodificado
+        }
+
+        localStorage.setItem("passport", JSON.stringify(passport))
+
+        setMsgError(fetched.message)
   
         setTimeout(() => {
           navigate("/")
@@ -72,6 +84,7 @@ const loginMe = async (credenciales) => {
         onBlurFunction={(e) => checkError(e)}
         />
         <div className="error">{credencialesError.emailError}</div>
+
         <CInput 
         className={`inputDesign ${credencialesError.passwordError !== "" ? "inputDesignError" : ""}`}
         type={"password"}
@@ -81,6 +94,7 @@ const loginMe = async (credenciales) => {
         onChangeFunction={(e) => inputHandler(e)}
         onBlurFunction={(e) => checkError(e)}
         />
+
         <div className="error">{credencialesError.passwordError}</div>
 
         <CButton

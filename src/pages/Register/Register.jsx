@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
 import { validacion } from "../../utils/functions";
+
 import { registerUser } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
 
