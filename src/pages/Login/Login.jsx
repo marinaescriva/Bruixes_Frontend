@@ -42,7 +42,7 @@ const checkError = (e) => {
     }))
   }
 
-const loginMe = async (credenciales) => {
+const loginMe = async () => {
     try {
 
         for (let elemento in credenciales) {
