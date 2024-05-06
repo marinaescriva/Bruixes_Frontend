@@ -22,9 +22,10 @@ export const Header = () => {
 
                     </div>
                     ) : (
-                    <div>
+                    <div className="authMenu">
 
                         <Navigator title={"REGISTER"} destination={"/register"} />
+                        <Navigator title={"LOGIN"} destination={"/login"} />
 
                     </div>)
             }
