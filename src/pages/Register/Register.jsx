@@ -100,7 +100,7 @@ export const Register = () => {
         title={"REGISTER"}
         functionEmit={registerMe}
       />
-      {msgError}
+      <div className="error">{msgError} </div>
     </div>
   )
 }

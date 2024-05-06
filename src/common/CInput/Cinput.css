@@ -2,8 +2,8 @@
     height: 3em;
     width: 18em;
 
-    border-radius: 0.8em;
-    margin: 1em;
+    border-radius: 1em;
+    margin: 0.8em;
     border: 0.2 solid rgba(135, 37, 20, 0);
 
     text-align: center;
@@ -20,8 +20,3 @@
 
 }
 
-.error{
-  color: rgb(135, 37, 20);
-  font-weight: bold;
-
-}
