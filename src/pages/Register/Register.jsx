@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
+import { validacion } from "../../utils/functions";
 
 import "./Register.css";
+
 
 export const Register = () => {
 
@@ -12,22 +14,50 @@ export const Register = () => {
     password: "",
   });
 
+  const [userError, setUserError] = useState({
+    nombreError: "",
+    emailError: "",
+    passwordError: "",
+  });
+
+  const [msgError, setMsgError] = useState("");
+
   const inputHandler = (e) => {
-    
+
     setUser(
       (prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
+        ...prevState,
+        [e.target.name]: e.target.value
+      }))
   }
 
-  const registerMe = () => {
-    console.log(user,"registerMe");
+  const checkError = (e) => {
+    const error = validacion(e.target.name , e.target.value)
+    console.log(error)
+  }
+
+  const registerMe = async () => {
+    try {
+
+      for (let elemento in user) {
+        if (user[elemento] === "") {
+          throw new Error("Todos los campos deben estar llenos")
+        }
+      }
+
+      console.log("?????")
+      const fetched = await RegisterUser()
+      console.log(fetched)
+
+    } catch (error) {
+      setMsgError(error.message)
+    }
+
   }
 
   return (
     <div className="registerDesign">
-      <pre>{JSON.stringify(user, null, 2)}  </pre>
+
       <CInput
         className={"inputDesign"}
         type={"text"}
@@ -35,7 +65,9 @@ export const Register = () => {
         placeholder={"nombre"}
         value={user.nombre || ""}
         onChangeFunction={(e) => inputHandler(e)}
+        onBlurFunction={(e) => checkError(e)}
       />
+      {userError.nombreError}
       <CInput
         className={"inputDesign"}
         type={"email"}
@@ -43,7 +75,9 @@ export const Register = () => {
         placeholder={"email"}
         value={user.email || ""}
         onChangeFunction={(e) => inputHandler(e)}
+        onBlurFunction={(e) => checkError(e)}
       />
+       {userError.emailError}
       <CInput
         className={"inputDesign"}
         type={"password"}
@@ -51,12 +85,15 @@ export const Register = () => {
         placeholder={"password"}
         value={user.password || ""}
         onChangeFunction={(e) => inputHandler(e)}
+        onBlurFunction={(e) => checkError(e)}
       />
+       {userError.passwordError}
       <CButton
-      className={"cButtonDesign"}
-      title={"REGISTER"}
-      functionEmit={registerMe}
+        className={"cButtonDesign"}
+        title={"REGISTER"}
+        functionEmit={registerMe}
       />
+      {msgError}
     </div>
   )
 }
