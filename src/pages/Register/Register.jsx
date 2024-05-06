@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
 import { validacion } from "../../utils/functions";
+import { registerUser } from "../../services/apiCalls";
 
 import "./Register.css";
 
@@ -32,11 +33,11 @@ export const Register = () => {
   }
 
   const checkError = (e) => {
-    const error = validacion(e.target.name , e.target.value);
-    
+    const error = validacion(e.target.name, e.target.value);
+
     setUserError((prevState) => ({
       ...prevState,
-      [e.target.name + "Error"] : error,
+      [e.target.name + "Error"]: error,
     }))
   }
 
@@ -49,9 +50,12 @@ export const Register = () => {
         }
       }
 
-      console.log("?????")
-      const fetched = await RegisterUser()
+      const fetched = await registerUser(user)
       console.log(fetched)
+
+      setTimeout(() => {
+        navigate("/")
+      }, 800)
 
     } catch (error) {
       setMsgError(error.message)
@@ -63,7 +67,7 @@ export const Register = () => {
     <div className="registerDesign">
 
       <CInput
-        className={`inputDesign ${userError.nombreError !== "" ? "inputDesignError" : "" }`}
+        className={`inputDesign ${userError.nombreError !== "" ? "inputDesignError" : ""}`}
         type={"text"}
         name={"nombre"}
         placeholder={"nombre"}
@@ -74,7 +78,7 @@ export const Register = () => {
       <div className="error">{userError.nombreError}</div>
 
       <CInput
-        className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : "" }`}
+        className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
         type={"email"}
         name={"email"}
         placeholder={"email"}
@@ -82,10 +86,10 @@ export const Register = () => {
         onChangeFunction={(e) => inputHandler(e)}
         onBlurFunction={(e) => checkError(e)}
       />
-       <div className="error">{userError.emailError}</div>
+      <div className="error">{userError.emailError}</div>
 
       <CInput
-        className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : "" }`}
+        className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""}`}
         type={"password"}
         name={"password"}
         placeholder={"password"}
@@ -93,7 +97,7 @@ export const Register = () => {
         onChangeFunction={(e) => inputHandler(e)}
         onBlurFunction={(e) => checkError(e)}
       />
-       <div className="error">{userError.passwordError}</div>
+      <div className="error">{userError.passwordError}</div>
 
       <CButton
         className={"cButtonDesign"}

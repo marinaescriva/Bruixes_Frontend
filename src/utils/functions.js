@@ -17,7 +17,7 @@ export const validacion = (type, value) => {
 
             case "password":
 
-            if (value.length < 6 ) {
+            if (value.length < 6  || value.length > 10) {
             return "contraseña no válida"
             }
 
