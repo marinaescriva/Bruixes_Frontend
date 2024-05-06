@@ -3,7 +3,8 @@
     height: 12vh;
     width: 100vw;
 
-    background-color:rgb(120, 28, 11);
+    background-color:rgb(255, 255, 255);
+    color: rgb(135, 37, 20);
 
     display:flex;
     justify-content:flex-end;

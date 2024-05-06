@@ -10,22 +10,21 @@ export const Header = () => {
     return (
         <div className="headerDesign">
             <Navigator
-                title={"home"}
-                destination={"/"}
+                title={"HOME"} destination={"/"}
             />
 
             {
                 token
                     ? (<div>
 
-                        <Navigator title={"nickname"} destination={"/profile"} />
-                        <Navigator title={"log out"} onClick ={() => logOut()} />
+                        <Navigator title={"NICKNAME"} destination={"/profile"} />
+                        <Navigator title={"LOG OUT"} onClick ={() => logOut()} />
 
                     </div>
                     ) : (
                     <div>
 
-                        <Navigator title={"register"} destination={"/register"} />
+                        <Navigator title={"REGISTER"} destination={"/register"} />
 
                     </div>)
             }
