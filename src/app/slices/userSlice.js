@@ -18,6 +18,8 @@ export const userSlice = createSlice({
         logout:(state, action) => {
             return {
                 ...state,
+                credenciales: "",
+                isRegistered: false,
                 ...action.payload
             }
         },

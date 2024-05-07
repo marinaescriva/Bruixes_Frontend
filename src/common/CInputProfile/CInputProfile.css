@@ -1,0 +1,21 @@
+.inputDesignProfile {
+    height: 3em;
+    width: 18em;
+
+    border-radius: 1em;
+    margin: 0.8em;
+    border: 0.2 solid rgba(135, 37, 20, 0);
+
+    text-align: center;
+    font-size: small;
+
+    color: rgb(54, 93, 132);
+
+}
+
+.inputDesignProfileError{
+
+    color: rgb(135, 37, 20);
+    border: 0.2 solid rgb(135, 37, 20);
+
+}
