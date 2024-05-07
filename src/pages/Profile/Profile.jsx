@@ -1,12 +1,15 @@
 import "./Profile.css";
 import { useDispatch, useSelector } from "react-redux";
+// import { useState } from 'react';
 import { userData } from "../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { myProfile } from "../../services/apiCalls";
+import { myProfile, updateProfile } from "../../services/apiCalls";
 import { CButton } from "../../common/CButton/CButton";
+import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
 import { validacion } from "../../utils/functions";
 import { CInputProfile } from "../../common/CInputProfile/CInputProfile";
+import {decodeToken} from  'react-jwt';
 
 
 export const Profile = () => {
@@ -18,10 +21,6 @@ export const Profile = () => {
   const token = rdxUser?.credenciales?.token; ////
 
   const [tokenStorage, setTokenStorage] = useState(rdxUser?.credenciales?.token);
-  console.log(token, "token")
-  console.log(rdxUser, "rdxUser")
-  console.log( rdxUser?.credenciales?.user?.nombre, "nombre")
-
   const [loadedData, setLoadedData] = useState(false);
   const [write, setWrite] = useState("disabled");
 
@@ -62,7 +61,12 @@ export const Profile = () => {
 
 
   const inputHandler = (e) => {
-    setUser((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+    setUser((prevState) => 
+      ({ 
+        ...prevState, 
+        [e.target.name]: e.target.value 
+      })
+  );
   };
 
   useEffect(() => {
@@ -99,24 +103,29 @@ export const Profile = () => {
   const editProfile = async () => {
 
     try {
+      console.log(user , "user")
 
-      const updatedUser = {
-        ...user,
-        nombre: user.nombre
-      }
-      const fetched = await updateProfile(token, updatedUser)
+      const updatedUser = await updateProfile (
+        rdxUser?.credenciales?.token,
+        user
+      )
 
-      setUser((prevState) => ({
-        ...prevState,
-        nombre: fetched.nombre || prevState.nombre,
-        email: fetched.email || prevState.email
-      }));
+      console.log(rdxUser.credenciales.user.nombre, "nombre")
+      console.log(rdxUser.credenciales.user.email, "email")
+    
+      setUser(updatedUser);
+      setLoadedData(false);
+      setWrite("disabled");
 
-      setWrite("disabled")
+      setUserError({
+        nombreError: "",
+        emailError: ""
+      })
 
     } catch (error) {
-      console.log(error.message);
+      return error;
     }
+    setLoadedData(false);
   }
 
   return (
@@ -163,6 +172,11 @@ export const Profile = () => {
         title={write === "" ? "GUARDAR" : "EDITAR"}
         functionEmit={write === "" ? editProfile : () => setWrite("")}
       />
+
+      <CButtonNewReserva
+          path={"/reserva"}
+          title={"Nueva reserva"}>
+      </CButtonNewReserva>
 
     </div>
     </>

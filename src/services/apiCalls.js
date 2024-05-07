@@ -76,3 +76,70 @@ export const myProfile = async (token) => {
       }
 
 }
+
+export const updateProfile = async (token , user) => {
+    
+    const options = {
+        
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(user)
+       
+      }
+    
+      try {
+        
+        const response = await fetch(`${root}users/profile`, options)
+        
+       
+        const data = await response.json()
+
+        if (!data.success) {
+          throw new Error(data.message)
+        }
+    
+        return data
+    
+      } catch (error) {
+        return error
+      }
+
+}
+export const getAllTables = async (token) => {
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+    try {
+        const response = await fetch(`${root}tables`, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
+
+export const getAllGames = async (token) => {
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+    try {
+        const response = await fetch(`${root}games`, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
+};

@@ -9,8 +9,20 @@
     background-position: center;
     background-repeat: no-repeat;
 
+    color: black;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+}
+.logoDesign{
+    width: 36vw;
+    margin-top: 10em;
+
+}
+.cartaDesign{
+    width: 100vw;
+    margin-top: 2em;
+    background-color: rgb(255, 255, 255);
 }

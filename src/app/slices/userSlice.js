@@ -23,6 +23,16 @@ export const userSlice = createSlice({
                 ...action.payload
             }
         },
+        profile: (state, action) => {
+            return {
+              ...state,
+              credenciales: {
+                ...state.credenciales,
+                email: action.payload.email
+            },
+              ...action.payload,
+            }
+        },
         doRegister: (state) =>{
             return {
                 ...state,
@@ -39,7 +49,7 @@ export const userSlice = createSlice({
     }
 });
 
-export const { login, logout, doRegister, noRegister} = userSlice.actions;
+export const { login, logout, profile, doRegister, noRegister} = userSlice.actions;
 
 export const userData = (state) => state.user;
 
