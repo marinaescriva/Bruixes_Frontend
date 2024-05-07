@@ -4,38 +4,33 @@ import { userData } from "../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { myProfile } from "../../services/apiCalls";
-import {decodeToken} from  'react-jwt';
-
-// import { getMyOwnPost, deletePost } from "../../services/apiCalls";
 import { CButton } from "../../common/CButton/CButton";
-// import { CButtonCreate } from "../../common/CbutttonCreate/CbuttonCreate";
-// import { CinputProfile } from '../../common/CinputProfile/CinputProfile';
-// import { validation } from "../../utils/functions";
-import { CInput } from "../../common/CInput/Cinput";
-// import { ClinkPost } from "../../common/Clink/Clink";
+import { validacion } from "../../utils/functions";
+import { CInputProfile } from "../../common/CInputProfile/CInputProfile";
+
 
 export const Profile = () => {
 
   const navigate = useNavigate();
-  const state = useSelector(userData);
-  const rdxUser = useSelector(userData);
   const dispatch = useDispatch();
-  const [criteria, setCriteria] = useState("")
-  const token = rdxUser?.credenciales?.token
+
+  const rdxUser = useSelector(userData); ///
+  const token = rdxUser?.credenciales?.token; ////
+
+  const [tokenStorage, setTokenStorage] = useState(rdxUser?.credenciales?.token);
+  console.log(token, "token")
+  console.log(rdxUser, "rdxUser")
+  console.log( rdxUser?.credenciales?.user?.nombre, "nombre")
+
+  const [loadedData, setLoadedData] = useState(false);
+  const [write, setWrite] = useState("disabled");
 
 
   useEffect(() => {
     if (!token) {
       navigate("/login")
     }
-  }, [state])
-
-  useEffect(() => {
-    if (criteria !== "") {
-     
-      dispatch(updateCriteria(criteria))
-    }
-  }, [criteria])
+  }, [rdxUser])
 
   const searchHandler = (e) => {
     setCriteria(e.target.value)
@@ -44,42 +39,40 @@ export const Profile = () => {
   const [user, setUser] = useState({
     nombre: "",
     email: "",
-   
+    password: "",
+
   })
 
   const [userError, setUserError] = useState({
     nombreError: "",
-    emailError: ""
+    emailError: "",
+    passwordError: ""
   })
 
   const [msgError, setMsgError] = useState("");
 
-//   const inputHandler = (e) => {
-//     const { name, value } = e.target;
-//     setUser((prevState) => ({
-//       ...prevState,
-//       [name]: value
-//     }));
-//   };
+  const checkError = (e) => {
+    const error = validacion(e.target.name, e.target.value);
 
-//   const checkError = (e) => {
-//     const error = validation(e.target.name, e.target.value);
-
-//     setUserError((prevState) => ({
-//       ...prevState,
-//       [e.target.name + "Error"]: error,
-//     }));
-//   };
+    setUserError((prevState) => ({
+      ...prevState,
+      [e.target.name + "Error"]: error,
+    }));
+  };
 
 
-//   useEffect(() => {
+  const inputHandler = (e) => {
+    setUser((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+  };
 
-//     if (!token) {
-//       navigate("/")
+  useEffect(() => {
 
-//     }
+    if (!token) {
+      navigate("/")
 
-//   }, [token])
+    }
+
+  }, [token])
 
   useEffect(() => {
     const getmyProfile = async () => {
@@ -88,8 +81,9 @@ export const Profile = () => {
         const fetched = await myProfile(token)
 
         setUser({
-          name: fetched.name,
+          nombre: fetched.nombre,
           email: fetched.email,
+          password: fetched.password
         })
 
         setLoadedData(true)
@@ -102,147 +96,75 @@ export const Profile = () => {
     getmyProfile()
   }, [token, loadedData])
 
+  const editProfile = async () => {
 
-//   const updateData = async () => {
+    try {
 
-//     try {
+      const updatedUser = {
+        ...user,
+        nombre: user.nombre
+      }
+      const fetched = await updateProfile(token, updatedUser)
 
-//       const updatedUser = {
-//         ...user,
-//         name: user.name
-//       }
-//       const fetched = await updateProfile(token, updatedUser)
+      setUser((prevState) => ({
+        ...prevState,
+        nombre: fetched.nombre || prevState.nombre,
+        email: fetched.email || prevState.email
+      }));
 
-//       setUser((prevState) => ({
-//         ...prevState,
-//         name: fetched.name || prevState.name,
-//         email: fetched.email || prevState.email
-//       }));
+      setWrite("disabled")
 
-//       setWrite("disabled")
-
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-
-//   const [myPosts, setMyPosts] = useState([]);
-
-//   useEffect(() => {
-
-//     const getMyOwnPostInfo = async (token) => {
-
-
-//       try {
-//         const fetched = await getMyOwnPost(token)
-
-//         setMyPosts(fetched) //? quite .data
-//         const newPosts = setMyPosts.data
-
-//       } catch (error) {
-//         console.log(error)
-//       }
-//     }
-
-//     if (token) {
-//       getMyOwnPostInfo(token);
-//     }
-//   }, [])
-
-
-//   const deletingPosts = async (postId) => {
-
-//     try {
-
-//       const fetched = await deletePost(postId, token)
-
-//       if (fetched.success) {
-//         setMyPosts(posts.filter(item => item._id !== postId))
-
-//       }
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
-    <>
-      <div className="profileDesign">
+    <>  <div className="profileDesign">
+      <div> {`Perfil de ${rdxUser.credenciales.user.nombre}`}</div>
+      <CInputProfile
+        className={`inputDesign ${userError.nombreError !== "" ? "inputDesignError" : ""}`}
+        type={"text"}
+        name={"nombre"}
+        placeholder={"nombre"}
+        value={user.nombre || ""}
+        disabled={write}
+        onChangeFunction={(e) => inputHandler(e)}
+        onBlurFunction={(e) => checkError(e)}
+      />
+      <div className="error">{userError.nombreError}</div>
 
-        {/* <ClinkPost
-          path={"/post"}
-          title={"new post"}>
-        </ClinkPost> */}
-        <>
+      <CInputProfile
+        className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
+        type={"email"}
+        name={"email"}
+        placeholder={"email"}
+        value={user.email || ""}
+        disabled={write}
+        onChangeFunction={(e) => inputHandler(e)}
+        onBlurFunction={(e) => checkError(e)}
+      />
+      <div className="error">{userError.emailError}</div>
 
-          <div className="edit-profile">
-            <CInput
-              type="text"
-              name="name"
-              placeholder="name"
-              value={user.name || ""}
-              disabled={write}
-              functionChange={(e) => inputHandler(e)}
-              functionBlur={(e) => checkError(e)}
-            />
-            <div className='error'>{userError.nameError}</div>
+      <CInputProfile
+        className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""}`}
+        type={"password"}
+        name={"password"}
+        placeholder={"* * * * * * * *"}
+        value={user.password || ""}
+        disabled={"disabled"}
+        onChangeFunction={(e) => inputHandler(e)}
+        onBlurFunction={(e) => checkError(e)}
+      />
+      <div className="error">{userError.passwordError}</div>
 
-            <CInput
-              type="email"
-              name="email"
-              placeholder="email"
-              value={user.email || ""}
-              disabled={"disabled"}
-              functionChange={(e) => inputHandler(e)}
-              functionBlur={(e) => checkError(e)}
+      <CButton
+        className={"cButtonDesign"}
+        title={write === "" ? "GUARDAR" : "EDITAR"}
+        functionEmit={write === "" ? editProfile : () => setWrite("")}
+        />
 
-            />
-            <div className='error'>{userError.emailError}</div>
-
-            <CButton
-              className={write === "" ? "CButtonDesign2 CButtonDesign" : "CButtonDesign"}
-              title={write === "" ? "Confirm" : "Edit"}
-              functionEmit={write === "" ? updateData : () => setWrite("")}
-            />
-
-          </div>
-
-        </>
-        <div>
-          {loadedData && myPosts.length > 0
-
-            ? (
-              myPosts.map(post => {
-                const arrayLikes = post.likes
-                return (
-
-                  <div key={post.id} className='profile-pannel'>
-
-                    <div className='card-title-profile'>{post.title}</div>
-                    <div className='card-text-profile'>{post.text} </div>
-                    <div >{post.image && <img className='card-img-profile' src={post.image} alt="posts image"></img>}</div>
-                    <div className='card-text-profile'>{arrayLikes.length} </div>
-                    <div className='card-nick-profile'>{post.nick} </div>
-                    <div className="deleteSection-profile">
-
-                      <CButton
-                        className={'CButtonDesign'}
-                        title={`Delete post `}
-                        functionEmit={() => deletingPosts(post._id)}
-                      />
-                    </div>
-                  </div>
-                )
-              })
-
-            ) : (
-
-              <div>No hay posts </div>
-            )}
-        </div>
-
-      </div>
+    </div>
     </>
   )
 }
