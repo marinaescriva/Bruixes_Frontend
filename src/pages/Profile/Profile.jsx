@@ -162,7 +162,7 @@ export const Profile = () => {
         className={"cButtonDesign"}
         title={write === "" ? "GUARDAR" : "EDITAR"}
         functionEmit={write === "" ? editProfile : () => setWrite("")}
-        />
+      />
 
     </div>
     </>
