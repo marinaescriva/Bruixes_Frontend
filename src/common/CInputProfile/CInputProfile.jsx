@@ -1,6 +1,6 @@
 import "./CInputProfile.css"
 
-export const CInputProfile = ({type, name, value, placeholder, disabled , functionChange, functionBlur}) => {
+export const CInputProfile = ({type, name, value, placeholder, disabled , onChangeFunction, onBlurFunction}) => {
 
     return (
         <input
@@ -10,8 +10,8 @@ export const CInputProfile = ({type, name, value, placeholder, disabled , functi
         placeholder={placeholder}
         value={value}
         disabled={disabled}
-        onChange={functionChange}
-        onBlur={functionBlur}
+        onChange={onChangeFunction}
+        onBlur={onBlurFunction}
     
         />
     )
