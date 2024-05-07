@@ -1,0 +1,16 @@
+.reservaDesign{
+    width: 100vw;
+    height: 88vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background-image: url('../../img/fondocolores.png');
+    /* background-size:cover; */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}

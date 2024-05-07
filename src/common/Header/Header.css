@@ -1,0 +1,23 @@
+.headerDesign {
+
+    height: 12vh;
+    width: 100vw;
+
+    background-color:rgba(255, 255, 255, 0);
+    color: rgb(135, 37, 20);
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    flex-direction:row;
+
+    padding-top:  1em;
+}
+
+.authMenu {
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    flex-direction:row;
+    margin-right: 2vw;
+}
