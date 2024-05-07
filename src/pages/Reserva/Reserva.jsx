@@ -30,7 +30,7 @@ export const Reserva = () => {
 
   return (
     <div>
-      <h2>Lista de Mesas</h2>
+      <h2>Reserva tu mesa</h2>
       <div className="mesasDesign">
         {tables.map((table) => (
           <div className="mesaDesign" key={table.id}>
