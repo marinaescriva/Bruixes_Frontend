@@ -64,6 +64,9 @@ const loginMe = async () => {
             user: decodificado
         }
 
+        console.log(passport, "passport");
+        console.log(credenciales, "credenciales");
+
         dispatch(login({ credenciales: passport }));
 
         setTimeout(() => {
@@ -73,6 +76,8 @@ const loginMe = async () => {
       } catch (error) {
         setMsgError(error.message)
       }
+
+      console.log(credenciales.email, "credenciales.email")
     
 }
     return (
