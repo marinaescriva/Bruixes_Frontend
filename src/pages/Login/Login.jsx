@@ -76,7 +76,7 @@ const loginMe = async () => {
     
 }
     return (
-        <div className="loginDesign"> 
+        <div className="d-flex justify-content-center flex-column align-items-center loginDesign"> 
         <CInput
         className={`inputDesign ${credencialesError.emailError !== "" ? "inputDesignError" : ""}`}
         type={"email"}

@@ -3,13 +3,15 @@
     height: 12vh;
     width: 100vw;
 
-    background-color:rgb(255, 255, 255);
+    background-color:rgba(255, 255, 255, 0);
     color: rgb(135, 37, 20);
 
     display:flex;
     justify-content:flex-end;
     align-items:center;
     flex-direction:row;
+
+    padding-top:  1em;
 }
 
 .authMenu {
