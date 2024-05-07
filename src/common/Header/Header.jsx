@@ -1,13 +1,35 @@
 import "./Header.css";
 import { Navigator } from "../Navigator/Navigator";
-import { useSelector } from "react-redux";
-import { userData } from "../../app/slices/userSlice";
+import { useSelector , useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { updateCriteria } from "../../app/slices/searchSlice";
+import { userData, logout} from "../../app/slices/userSlice";
 export const Header = () => {
 
     const rdxUser = useSelector(userData);
-    console.log(rdxUser, "rdxUser")
-    console.log(rdxUser?.credenciales?.token, "token")
-    console.log(rdxUser?.credenciales?.user?.id_role, "id_role")
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+       
+      }, [rdxUser]);
+
+    const [criteria, setCriteria] = useState("")
+
+    const searchHandler = (e) => {
+        setCriteria(e.target.value)
+      }
+    
+      useEffect(() => {
+        if (criteria !== "") {
+         
+          dispatch(updateCriteria(criteria))
+        }
+      }, [criteria])
+
+    // console.log(rdxUser, "rdxUser")
+    // console.log(rdxUser?.credenciales?.token, "token")
+    // console.log(rdxUser?.credenciales?.user?.id_role, "id_role")
 
     return (
         <div className="d-flex col m-9 justify-content-center align-items-center headerDesign">
@@ -29,7 +51,7 @@ export const Header = () => {
 
                         <Navigator title={"Reserva"} destination={"/reserva"} />
 
-                        <div onClick={() => dispatch(logout({ credenciales: "" }))}>
+                        <div onClick={() => dispatch(logout({ credenciales: "" , isRegistered: false}))}>
                             <Navigator path="/" title={"Log out"} />
                         </div>
 
