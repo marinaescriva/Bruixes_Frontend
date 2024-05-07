@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { myProfile, updateProfile } from "../../services/apiCalls";
 import { CButton } from "../../common/CButton/CButton";
+import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
 import { validacion } from "../../utils/functions";
 import { CInputProfile } from "../../common/CInputProfile/CInputProfile";
 import {decodeToken} from  'react-jwt';
@@ -20,10 +21,6 @@ export const Profile = () => {
   const token = rdxUser?.credenciales?.token; ////
 
   const [tokenStorage, setTokenStorage] = useState(rdxUser?.credenciales?.token);
-  // console.log(token, "token")
-  // console.log(rdxUser, "rdxUser")
-  // console.log( rdxUser?.credenciales?.user?.nombre, "nombre")
-
   const [loadedData, setLoadedData] = useState(false);
   const [write, setWrite] = useState("disabled");
 
@@ -106,9 +103,10 @@ export const Profile = () => {
   const editProfile = async () => {
 
     try {
+      console.log(user , "user")
 
       const updatedUser = await updateProfile (
-        ...rdxUser?.credenciales?.token,
+        rdxUser?.credenciales?.token,
         user
       )
 
@@ -174,6 +172,11 @@ export const Profile = () => {
         title={write === "" ? "GUARDAR" : "EDITAR"}
         functionEmit={write === "" ? editProfile : () => setWrite("")}
       />
+
+      <CButtonNewReserva
+          path={"/reserva"}
+          title={"Nueva reserva"}>
+      </CButtonNewReserva>
 
     </div>
     </>

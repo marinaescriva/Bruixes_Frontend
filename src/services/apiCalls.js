@@ -77,8 +77,8 @@ export const myProfile = async (token) => {
 
 }
 
-export const updateProfile = async (token , newData) => {
-  
+export const updateProfile = async (token , user) => {
+    
     const options = {
         
         method: "PUT",
@@ -86,13 +86,14 @@ export const updateProfile = async (token , newData) => {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(newData)
+        body: JSON.stringify(user)
        
       }
     
       try {
         
         const response = await fetch(`${root}users/profile`, options)
+        
        
         const data = await response.json()
 
@@ -106,4 +107,21 @@ export const updateProfile = async (token , newData) => {
         return error
       }
 
+}
+export const getAllTables = async (token) => {
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+    try {
+        const response = await fetch(`${root}tables`, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
 }

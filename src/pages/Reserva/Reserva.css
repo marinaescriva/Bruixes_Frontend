@@ -1,4 +1,4 @@
-.reservaDesign{
+.reservaDesign {
     width: 100vw;
     height: 88vh;
     overflow-x: hidden;
@@ -9,8 +9,37 @@
     background-position: center;
     background-repeat: no-repeat;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mesasDesign {
+
+   
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgb(54, 93, 132);
+    color:whitesmoke;
+
+}
+.mesaDesign {
+    width: 4em;
+    height: 4em;
+
+    border-radius: 2em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgb(135, 37, 20);
+    color:whitesmoke;
+
 }
