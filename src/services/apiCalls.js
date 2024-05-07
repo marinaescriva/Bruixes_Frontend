@@ -124,4 +124,22 @@ export const getAllTables = async (token) => {
     } catch (error) {
         return error;
     }
-}
+};
+
+export const getAllGames = async (token) => {
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+    try {
+        const response = await fetch(`${root}games`, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
+};

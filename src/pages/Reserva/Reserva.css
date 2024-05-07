@@ -47,3 +47,36 @@
     background-color: rgb(135, 37, 20);
     color:whitesmoke;
 }
+
+.gamesDesign {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding:2em;
+    background-color: rgb(135, 37, 20);
+    color:whitesmoke;
+
+}
+.gameDesign {
+    width: 4em;
+    height: 4em;
+
+    border-radius: 2em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: whitesmoke;
+    color:rgb(135, 37, 20);
+
+}
+
+.gameDesign:hover {
+    background-color: rgb(155, 121, 9);
+    color:whitesmoke;
+}
