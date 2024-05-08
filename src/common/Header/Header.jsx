@@ -27,9 +27,9 @@ export const Header = () => {
         }
       }, [criteria])
 
-    console.log(rdxUser, "rdxUser")
-    console.log(rdxUser?.credenciales?.token, "token")
-    console.log(rdxUser?.credenciales?.user?.id_role, "id_role")
+    // console.log(rdxUser, "rdxUser")
+    // console.log(rdxUser?.credenciales?.token, "token")
+    // console.log(rdxUser?.credenciales?.user?.id_role, "id_role")
 
     return (
         <div className="d-flex col m-9 justify-content-center align-items-center headerDesign">

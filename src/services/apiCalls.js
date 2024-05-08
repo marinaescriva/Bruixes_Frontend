@@ -143,3 +143,21 @@ export const getAllGames = async (token) => {
         return error;
     }
 };
+
+export const createReserva = async (token, reserva) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(reserva)
+  }
+    try {
+        const response = await fetch(`${root}reservas`, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
+};
