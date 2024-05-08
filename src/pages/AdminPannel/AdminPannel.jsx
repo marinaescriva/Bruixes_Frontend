@@ -45,6 +45,7 @@ export const AdminPannel = () => {
 
     return (
         <div className="adminPannelDesign">
+            <div className="userBorrar" onClick={() => navigate("/games")}>Ver juegos</div>
             <div className="allUsers"> Todos los usuarios
                 {users.map((user) => (
                     <div key={user.id} className="userDesign">
