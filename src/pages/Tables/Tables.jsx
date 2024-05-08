@@ -12,9 +12,10 @@ export const Tables = () => {
   const token = state.credenciales.token || {};
   const [tables, setTables] = useState([]);
   const navigate = useNavigate();
-  const handleReserveClick = (id_mesa) => {
-    console.log("Mesa reservada", id_mesa);
-  };
+
+//   const handleReserveClick = (id_mesa) => {
+//     console.log("Mesa reservada", id_mesa);
+//   };
 
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export const Tables = () => {
 
               <div className="gameNombreDesign"> {table.id}</div>
 
-              <div className="gameBorrar" onClick={() => deletingGame(table.id)}> Borrar </div>
+              <div className="gameBorrar" onClick={() => deletingTable(table.id)}> Borrar </div>
             </div>
           ))}
         </div>
