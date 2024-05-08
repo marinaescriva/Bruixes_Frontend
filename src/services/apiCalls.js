@@ -161,3 +161,51 @@ export const createReserva = async (token, reserva) => {
         return error;
     }
 };
+
+export const GetUsers = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const response = await fetch(`${root}users`, options);
+    const data = await response.json();
+    console.log(data, "data");
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteUser = async (token , userId) => {
+
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+    // body: JSON.stringify(data)
+  }
+
+  try {
+    const response = await fetch(`${root}users/${userId}`, options)
+
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+
+    return data
+
+  } catch (error) {
+    return error
+  }
+};

@@ -1,8 +1,10 @@
 .homeDesign{
     width: 100vw;
-    height: 88vh;
+    height: 80vh;
     overflow-x: hidden;
     overflow-y: auto;
+
+    padding-top: 5em;
 
     background-image: url('../../img/fondocolores.png');
     /* background-size:cover; */
