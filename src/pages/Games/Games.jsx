@@ -4,12 +4,13 @@ import { getAllGames, deleteGame } from "../../services/apiCalls";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { CButtonNewGame } from "../../common/CButtonNewGame/CButtonNewGame";
-
+import { useNavigate } from "react-router-dom";
 export const Games = () => {
 
   const state = useSelector(userData);
   const token = state.credenciales.token || {};
   const [games, setGames] = useState([]);
+  const navigate = useNavigate();
 
   const handleReserveClick = (id_juego) => {
     console.log("Juego reservado:", id_juego);
@@ -46,7 +47,7 @@ export const Games = () => {
       <div className="gamesDesign">
         <div className = "botonesRedirect">
         <div className="gameBorrar" onClick={() => navigate("/admin")}>Ver usuarios</div>
-        <div className="gameBorrar" onClick={() => navigate("/mesas")}>Ver mesas</div>
+        <div className="gameBorrar" onClick={() => navigate("/tables")}>Ver mesas</div>
         </div>
 
         <div className="allUsers">
