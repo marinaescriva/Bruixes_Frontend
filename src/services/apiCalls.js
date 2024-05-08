@@ -191,7 +191,6 @@ export const deleteUser = async (token , userId) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     }
-    // body: JSON.stringify(data)
   }
 
   try {
@@ -208,4 +207,55 @@ export const deleteUser = async (token , userId) => {
   } catch (error) {
     return error
   }
+};
+export const deleteGame = async (token , id) => {
+   console.log(id, "id")
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+
+  try {
+    const response = await fetch(`${root}games/${id}`, options)
+
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+
+    return data
+
+  } catch (error) {
+    return error
+  }
+};
+
+export const deleteTable = async (token , id) => {
+  console.log(id, "id")
+ const options = {
+   method: "DELETE",
+   headers: {
+     "Content-Type": "application/json",
+     "Authorization": `Bearer ${token}`
+   }
+ }
+
+ try {
+   const response = await fetch(`${root}tables/${id}`, options)
+
+   const data = await response.json()
+
+   if (!data.success) {
+     throw new Error(data.message)
+   }
+
+   return data
+
+ } catch (error) {
+   return error
+ }
 };

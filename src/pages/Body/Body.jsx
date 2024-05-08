@@ -6,6 +6,7 @@ import { Login } from '../Login/Login';
 import { Reserva } from '../Reserva/Reserva';
 import { Profile } from '../Profile/Profile';
 import { Games } from '../Games/Games';
+import { Tables } from '../Tables/Tables';
 import { AdminPannel } from '../AdminPannel/AdminPannel';
 export const Body = () => {
   return (
@@ -19,6 +20,7 @@ export const Body = () => {
       <Route path='/reserva' element={<Reserva />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/games' element={<Games />} />
+      <Route path='/tables' element={<Tables />} />
       <Route path='/admin' element={<AdminPannel />} />
       
     </Routes>
