@@ -27,37 +27,38 @@ export const Header = () => {
         }
       }, [criteria])
 
-    console.log(rdxUser, "rdxUser")
-    console.log(rdxUser?.credenciales?.token, "token")
-    console.log(rdxUser?.credenciales?.user?.id_role, "id_role")
+    // console.log(rdxUser, "rdxUser")
+    // console.log(rdxUser?.credenciales?.token, "token")
+    // console.log(rdxUser?.credenciales?.user?.id_role, "id_role")
 
     return (
-        <div className="d-flex col m-9 justify-content-center align-items-center headerDesign">
+        <div className="container-fluid">
+        <div className="row justify-content-center align-items-center headerDesign">
             <Navigator
                 title={"HOME"} destination={"/"}
             />
 
             {
                 rdxUser?.credenciales?.token
-                    ? (<div className= "d-flex col m-1 justify-content-center align-items-center" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                    ? (<div className= "d-flex justify-content-center align-items-center">
 
                         <Navigator title={rdxUser.credenciales.user.nombre} destination={"/profile"} />
                         
-
+                        
                         {(rdxUser?.credenciales?.user?.id_role === 1)
-                            ? <Navigator path="/admin" title="Gestión" />
+                            ? <Navigator title="Gestión"  destination={"/admin"}/>
                             : null
                         }
-
-                        <Navigator title={"Reserva"} destination={"/reserva"} />
+                        
+                        <Navigator title={"Reserva"} destination={"/reserva"} /> 
 
                         <div onClick={() => dispatch(logout({ credenciales: "" , isRegistered: false}))}>
-                            <Navigator path="/" title={"Log out"} />
+                            <Navigator title={"Log out"} destination={"/"} />
                         </div>
-
+                        
                     </div>
                     ) : (
-                        <div className="authMenu" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <div className="authMenud-flex justify-content-center align-items-center">
 
                             <Navigator title={"REGISTER"} destination={"/register"} />
                             <Navigator title={"LOGIN"} destination={"/login"} />
@@ -65,6 +66,7 @@ export const Header = () => {
                         </div>)
             }
 
+        </div>
         </div>
     );
 }
