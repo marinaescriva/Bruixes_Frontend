@@ -4,10 +4,13 @@
     overflow-x: hidden;
     overflow-y: auto;
 
-    background-image: url('../../img/fondocolores.png');
-    /* background-size:cover; */
+    margin-top: 2em;
+
+    /* background-image: url('src/img/tablero 4.png');
+    
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover; */
 
     display: flex;
     flex-direction: column;
@@ -16,11 +19,28 @@
     align-items: center;
 }
 
+.adminPannelAllUsers{
+
+    width: 100vw;
+    height: 80vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background-image: url('src/img/tablero 4.png');
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
 .allUsers {
     width: 76vw;
     height: 70vh;
 
-    color: rgb(54, 93, 132);
+    color:  rgb(135, 37, 20);
+    font-weight: bold;
+    font-size: medium;
 }
 
 .userDesign {
@@ -29,8 +49,10 @@
     
     color: rgb(135, 37, 20);
     font-weight: bold;
-    background-color:rgba(54, 93, 132, 0.482);
-    border-radius: 1em;
+    font-size: medium;
+
+    background-color:rgba(201, 144, 22, 0.995);
+    border-radius: 2em;
 
     margin: 0.8em;
 
@@ -47,8 +69,8 @@
     height: 8vh;
    
     padding: 0.5em;
+    color: whitesmoke;
   
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -64,7 +86,7 @@
   
     padding: 0.5em;
     
-
+    color: whitesmoke;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -75,9 +97,8 @@
 }
 .userBorrar{
     width: 20vw;
-    height: 8vh;
+    height: 12vh;
    
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -86,12 +107,15 @@
     text-align: center;
 
     color: whitesmoke;
-    background-color:  rgb(201, 144, 22);
+    background-color:  rgb(54, 93, 132);
     font-weight: bold;
+
+    border-radius: 1.3em;
+    margin: 2em;
 }
 
 .userBorrar:hover{
-    color: rgb(201, 144, 22);
+    color:rgb(135, 37, 20);
     background-color: whitesmoke;
     font-weight: bold;
 }

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { myProfile, updateProfile } from "../../services/apiCalls";
 import { CButton } from "../../common/CButton/CButton";
-import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
+// import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
 import { validacion } from "../../utils/functions";
 import { CInputProfile } from "../../common/CInputProfile/CInputProfile";
 import {decodeToken} from  'react-jwt';
@@ -174,11 +174,11 @@ export const Profile = () => {
         functionEmit={write === "" ? editProfile : () => setWrite("")}
       />
 
-      <CButtonNewReserva
+      </div>
+        {/* <CButtonNewReserva
           path={"/reserva"}
           title={"Nueva reserva"}>
-      </CButtonNewReserva>
-      </div>
+      </CButtonNewReserva> */}
     </div>
     </>
   )
