@@ -33,12 +33,9 @@ export const Reserva = () => {
   }
 
   const newReserva = async () => {
-    console.log(tablesData.reserva, "reserva")
-    console.log(token, "token")
     try {
       const response = await createReserva(token, tablesData);
       
-      console.log("Reserva creada:", response);
     } catch {
       console.log("Error al crear la reserva");
     }
@@ -73,10 +70,8 @@ export const Reserva = () => {
       try {
         const data = await getAllGames(token);
 
-        console.log(data.data, "data")
-
         setGames(data.data);
-        // console.log(data.data.nombre, "data nombre")
+     
       } catch (error) {
         console.error('Error fetching games', error);
       }
@@ -87,7 +82,7 @@ export const Reserva = () => {
 
 
   return (
-    <div>
+    <div className="reservaDesign">
       <h2>Reserva tu mesa</h2>
       <div className="mesasDesign">
 
@@ -122,13 +117,12 @@ export const Reserva = () => {
         }
 
         <CButton
-          className={"cButtonDesign"}
+          className={"CButtonNewReservaDesign"}
           title={"Reservar"}
           functionEmit={newReserva}
         />
       </div>
-
-
+      
     </div>
   );
 };

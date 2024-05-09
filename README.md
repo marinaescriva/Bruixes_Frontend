@@ -12,5 +12,5 @@ Currently, two official plugins are available:
 
     color: rgb(135, 37, 20);
     color: rgb(54, 93, 132);
-  rgb(201, 144, 22);
+     rgb(201, 144, 22);
 

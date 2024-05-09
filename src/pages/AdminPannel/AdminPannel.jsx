@@ -14,9 +14,6 @@ export const AdminPannel = () => {
     const [users, setUsers] = useState([]);
     const token = rdxUser?.credenciales?.token;
 
-    console.log(token, "token");
-    console.log(rdxUser.credenciales.user.id, "id");
-
     useEffect(() => {
         if (rdxUser?.credenciales?.user?.id !== 1) {
             navigate("/");

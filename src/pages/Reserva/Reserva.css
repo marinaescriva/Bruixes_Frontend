@@ -1,13 +1,13 @@
 .reservaDesign {
     width: 100vw;
-    height: 88vh;
-    overflow-x: hidden;
+    height: 80vh;
+    overflow-x: visible;
     overflow-y: auto;
 
-    background-image: url('../../img/fondocolores.png');
-    /* background-size:cover; */
-    background-position: center;
-    background-repeat: no-repeat;
+    color: rgb(224, 158, 15);
+
+    font-weight: lighter;
+    font-size: 2em;
 
     display: flex;
     flex-direction: column;
@@ -16,14 +16,23 @@
 }
 
 .mesasDesign {
+    
+    width: 100vw;
+    height: 60vh;
+
+    background-image: url('src/img/tablero 3.png');
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    
+    margin-top: 1em;
     padding:2em;
-    background-color: rgb(54, 93, 132);
+    /* background-color: rgba(54, 93, 132, 0.342); */
     color:whitesmoke;
 
 }

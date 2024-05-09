@@ -130,7 +130,8 @@ export const Profile = () => {
 
   return (
     <>  <div className="profileDesign">
-      <div> {`Perfil de ${rdxUser.credenciales.user.nombre}`}</div>
+      <div className="pannelProfile">
+      <div className="tituloProfile"> {`Perfil de ${rdxUser.credenciales.user.nombre}`}</div>
       <CInputProfile
         className={`inputDesign ${userError.nombreError !== "" ? "inputDesignError" : ""}`}
         type={"text"}
@@ -177,7 +178,7 @@ export const Profile = () => {
           path={"/reserva"}
           title={"Nueva reserva"}>
       </CButtonNewReserva>
-
+      </div>
     </div>
     </>
   )

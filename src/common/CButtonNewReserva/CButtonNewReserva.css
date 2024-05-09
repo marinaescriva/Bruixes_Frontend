@@ -1,11 +1,14 @@
 .CButtonNewReservaDesign{
         height: 3em;
-        width: 10em;
+        width: 5em;
     
         text-align: center;
         justify-content: center;
         display: flex;
         flex-direction: column;
+
+        font-size: medium;
+        font-weight: bold;
     
         border-radius: 1em;
         background-color: rgb(54, 93, 132);

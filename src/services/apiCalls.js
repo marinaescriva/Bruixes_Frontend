@@ -145,8 +145,6 @@ export const getAllGames = async (token) => {
 };
 
 export const createReserva = async (token, reserva) => {
- console.log(reserva, "reserva")
- console.log(token, "token")
  
   const options = {
     method: "POST",
@@ -156,7 +154,7 @@ export const createReserva = async (token, reserva) => {
     },
     body: JSON.stringify(reserva)
   }
-  console.log(options, "options")
+ 
     try {
         const response = await fetch(`${root}reservas`, options);
         const data = await response.json();
@@ -178,7 +176,7 @@ export const GetUsers = async (token) => {
   try {
     const response = await fetch(`${root}users`, options);
     const data = await response.json();
-    console.log(data, "data");
+    
     if (!data.success) {
       throw new Error(data.message);
     }
