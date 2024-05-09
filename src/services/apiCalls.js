@@ -145,6 +145,9 @@ export const getAllGames = async (token) => {
 };
 
 export const createReserva = async (token, reserva) => {
+ console.log(reserva, "reserva")
+ console.log(token, "token")
+ 
   const options = {
     method: "POST",
     headers: {
@@ -153,10 +156,12 @@ export const createReserva = async (token, reserva) => {
     },
     body: JSON.stringify(reserva)
   }
+  console.log(options, "options")
     try {
         const response = await fetch(`${root}reservas`, options);
         const data = await response.json();
         return data;
+
     } catch (error) {
         return error;
     }
