@@ -238,7 +238,7 @@ export const deleteGame = async (token , id) => {
 };
 
 export const deleteTable = async (token , id) => {
-  console.log(id, "id")
+  
  const options = {
    method: "DELETE",
    headers: {
@@ -262,3 +262,26 @@ export const deleteTable = async (token , id) => {
    return error
  }
 };
+
+export const getMyreservas = async (token) => {
+
+  console.log(token, "token")
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+    try {
+        const response = await fetch(`${root}misreservas`, options);
+        console.log(response, "reponse")
+        
+        const data = await response.json();
+        console.log(data, "data")
+
+        return data;
+    } catch (error) {
+        return error;
+    }
+}

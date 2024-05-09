@@ -6,11 +6,13 @@
 
     margin-top: 2em;
 
-    /* background-image: url('src/img/tablero 4.png');
+    background-image: url('src/img/tablero 5.png');
     
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; */
+    background-size: cover;
+
+    background-color: rgb(255, 255, 255);
 
     display: flex;
     flex-direction: column;
@@ -26,11 +28,12 @@
     overflow-x: hidden;
     overflow-y: auto;
 
-    background-image: url('src/img/tablero 4.png');
+    /* background-image: url('src/img/tablero 1.png'); */
     
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    /* background-color: rgb(255, 255, 255); */
 
 }
 
