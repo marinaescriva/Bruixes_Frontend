@@ -7,6 +7,7 @@ import { CButton } from "../../common/CButton/CButton";
 import { CInputProfile } from "../../common/CInputProfile/CInputProfile";
 import { CDropDown } from "../../common/CDropDown/CDropDown";
 import { CButtonNewMesa } from "../../common/CButtonNewMesa/CButtonNewMesa";
+import { CDropDownG } from "../../common/CDropDownG/CDropDownG";
 
 export const Reserva = () => {
 
@@ -68,11 +69,14 @@ export const Reserva = () => {
 
   useEffect(() => {
     const fetchGames = async () => {
-
+      
       try {
         const data = await getAllGames(token);
 
+        console.log(data.data, "data")
+
         setGames(data.data);
+        // console.log(data.data.nombre, "data nombre")
       } catch (error) {
         console.error('Error fetching games', error);
       }
@@ -96,7 +100,7 @@ export const Reserva = () => {
           disabled={""}
           onChangeFunction={(e) => { inputHandler(e) }}
         />
-        
+
         {tablesData.fechaHoraInicio !== "" &&
           <CDropDown
             buttonClass={""}
@@ -108,7 +112,7 @@ export const Reserva = () => {
         }
 
         {tablesData.idMesa !== "" &&
-          <CDropDown
+          <CDropDownG
             buttonClass={""}
             dropdownClass={""}
             title={"idJuego"}
