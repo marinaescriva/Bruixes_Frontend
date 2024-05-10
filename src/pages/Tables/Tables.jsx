@@ -49,6 +49,7 @@ export const Tables = () => {
         <div className = "buttonPannel">
         <div className="directUsers" onClick={() => navigate("/admin")}>Ver usuarios</div>
         <div className="directGames" onClick={() => navigate("/games")}>Ver juegos</div>
+        <div className="directTables" onClick={() => navigate("/reservas")}>Ver reservas</div>
         </div>
 
         <div className="allTables">

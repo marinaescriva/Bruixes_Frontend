@@ -45,6 +45,7 @@ export const AdminPannel = () => {
             <div className="buttonPannel">
                 <div className="directGames" onClick={() => navigate("/games")}>Ver juegos</div>
                 <div className="directTables" onClick={() => navigate("/tables")}>Ver mesas</div>
+                <div className="directTables" onClick={() => navigate("/reservas")}>Ver reservas</div>
             </div>
 
             <div className="allUsers"> Todos los usuarios

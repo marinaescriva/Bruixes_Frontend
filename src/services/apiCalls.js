@@ -304,3 +304,26 @@ export const deleteReservaById = async (token , id) => {
         return error;
     }
 }
+
+export const getAllReservas = async (token) => {
+  
+  console.log(token, "token")
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+    try {
+        const response = await fetch(`${root}reservas`, options);
+        console.log(response, "reponse")
+        
+        const data = await response.json();
+        console.log(data, "data")
+
+        return data;
+    } catch (error) {
+        return error;
+    }
+  }

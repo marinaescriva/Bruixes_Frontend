@@ -48,6 +48,7 @@ export const Games = () => {
       <div className="buttonPannel">
                 <div className="directGames" onClick={() => navigate("/admin")}>Ver usuarios</div>
                 <div className="directTables" onClick={() => navigate("/tables")}>Ver mesas</div>
+                <div className="directTables" onClick={() => navigate("/reservas")}>Ver reservas</div>
             </div>
 
         <div className="allUsers">

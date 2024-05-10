@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { myProfile, updateProfile, getMyreservas, deleteReservaById} from "../../services/apiCalls";
+import { myProfile, updateProfile, getMyreservas, deleteReservaById } from "../../services/apiCalls";
 import { CButton } from "../../common/CButton/CButton";
 // import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
 import { validacion } from "../../utils/functions";
@@ -68,7 +68,6 @@ export const Profile = () => {
       [e.target.name + "Error"]: error,
     }));
   };
-
 
   const inputHandler = (e) => {
     setUser((prevState) =>
@@ -139,7 +138,7 @@ export const Profile = () => {
   }
 
   ///////////////////
-  
+
 
   useEffect(() => {
     const getMyReservasInfo = async () => {
@@ -147,7 +146,7 @@ export const Profile = () => {
       try {
         const fetched = await getMyreservas(token)
         setReservaInfo(fetched.data)
-      
+
       } catch (error) {
         console.log(error)
       }
@@ -155,25 +154,25 @@ export const Profile = () => {
     getMyReservasInfo()
   }
     , [loadedData, token])
-    console.log(reservaInfo, "ReservaInfo")
+  console.log(reservaInfo, "ReservaInfo")
 
 
-    //////////////////////
+  //////////////////////
 
-    const deletingReserva = async (reservaId) => {
+  const deletingReserva = async (reservaId) => {
 
-      try {
-  
-        const fetched = await deleteReservaById(token, reservaId)
-  
-        if (fetched.success) {
-          setReservaInfo(reservaInfo.filter(item => item.id !== reservaId))
-  
-        }
-      } catch (error) {
-        console.log(error)
+    try {
+
+      const fetched = await deleteReservaById(token, reservaId)
+
+      if (fetched.success) {
+        setReservaInfo(reservaInfo.filter(item => item.id !== reservaId))
+
       }
+    } catch (error) {
+      console.log(error)
     }
+  }
 
   return (
     <>  <div className="profileDesign">
@@ -225,24 +224,24 @@ export const Profile = () => {
       <div className="misReservasDesign">
         MIS RESERVAS
         <div >
-        {reservaInfo.length > 0
-          ? (
-            reservaInfo.map((reserva) => {
-              return (
-                <div className="profileDesignBack" key={reserva.id}>
-                  <div>Mesa {reserva.idMesa}</div>
-                  <div>{reserva.juego.nombre}</div>
-                  <div>{reserva.idEvento}</div>
-                  <div>{reserva.fechaHoraInicio}</div>
-                  <div className="reservaBorrar" onClick={() => deletingReserva(reserva.id)}> Borrar </div>
-                </div>
-              )
-            })
-          )
-          : (<div>no hay reservas </div>)
-        }
+          {reservaInfo.length > 0
+            ? (
+              reservaInfo.map((reserva) => {
+                return (
+                  <div className="profileDesignBack" key={reserva.id}>
+                    <div>Mesa {reserva.idMesa}</div>
+                    <div>{reserva.juego.nombre}</div>
+                    <div>{reserva.idEvento}</div>
+                    <div>{reserva.fechaHoraInicio}</div>
+                    <div className="reservaBorrar" onClick={() => deletingReserva(reserva.id)}> Borrar </div>
+                  </div>
+                )
+              })
+            )
+            : (<div>no hay reservas </div>)
+          }
         </div>
-        
+
       </div>
     </div>
     </>
