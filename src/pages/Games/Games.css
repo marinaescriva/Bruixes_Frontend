@@ -6,7 +6,7 @@
 
     margin-top: 2em;
 
-    background-image: url('src/img/tablero 4.png');
+    background-image: url('src/img/tablero 3.png');
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -17,6 +17,10 @@
 
     justify-content: center;
     align-items: center;
+}
+.titleBackground{
+    background-color: rgba(255, 255, 255, 0.367);
+    border-radius: 1em;
 }
 
 .allGames {

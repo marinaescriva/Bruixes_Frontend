@@ -21,6 +21,11 @@
     align-items: center;
 }
 
+.titleBackground{
+    background-color: rgba(255, 255, 255, 0.367);
+    border-radius: 1em;
+}
+
 .adminPannelAllUsers{
 
     width: 100vw;
@@ -60,15 +65,6 @@
     background-color:  rgb(135, 37, 20);
     color: whitesmoke;
     border-radius: 1em;
-    font-weight: bold;
-    font-size: medium;
-}
-
-.allUsers {
-    width: 76vw;
-    height: 70vh;
-
-    color:  rgb(135, 37, 20);
     font-weight: bold;
     font-size: medium;
 }

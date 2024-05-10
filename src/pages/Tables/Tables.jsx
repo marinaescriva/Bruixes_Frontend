@@ -13,9 +13,9 @@ export const Tables = () => {
   const [tables, setTables] = useState([]);
   const navigate = useNavigate();
 
-//   const handleReserveClick = (id_mesa) => {
-//     console.log("Mesa reservada", id_mesa);
-//   };
+  //   const handleReserveClick = (id_mesa) => {
+  //     console.log("Mesa reservada", id_mesa);
+  //   };
 
 
   useEffect(() => {
@@ -46,21 +46,24 @@ export const Tables = () => {
   return (
     <div>
       <div className="tablesDesign">
-        <div className = "buttonPannel">
-        <div className="directUsers" onClick={() => navigate("/admin")}>Ver usuarios</div>
-        <div className="directGames" onClick={() => navigate("/games")}>Ver juegos</div>
-        <div className="directTables" onClick={() => navigate("/reservas")}>Ver reservas</div>
+        <div className="buttonPannel">
+          <div className="directUsers" onClick={() => navigate("/admin")}>Ver usuarios</div>
+          <div className="directGames" onClick={() => navigate("/games")}>Ver juegos</div>
+          <div className="directTables" onClick={() => navigate("/reservas")}>Ver reservas</div>
         </div>
 
-        <div className="allTables">
-          {tables.map((table) => (
-            <div className="tableDesign" key={table.id}>
+        <div className="allReservasPannelDesign">
+         <div className="titleBackground"> TODAS LAS MESAS</div>
+          <div className="allTables">
+            {tables.map((table) => (
+              <div className="tableDesign" key={table.id}>
 
-              <div className="tableNombreDesign"> {table.id}</div>
+                <div className="tableNombreDesign"> {table.id}</div>
 
-              <div className="tableBorrar" onClick={() => deletingTable(table.id)}> Borrar </div>
-            </div>
-          ))}
+                <div className="tableBorrar" onClick={() => deletingTable(table.id)}> Borrar </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

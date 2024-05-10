@@ -25,6 +25,10 @@
 
     color: rgb(54, 93, 132);
 }
+.titleBackground{
+    background-color: rgba(255, 255, 255, 0.367);
+    border-radius: 1em;
+}
 
 .tableDesign {
     width: 70vw;

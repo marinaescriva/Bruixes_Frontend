@@ -112,15 +112,11 @@ export const Profile = () => {
   const editProfile = async () => {
 
     try {
-      console.log(user, "user")
 
       const updatedUser = await updateProfile(
         rdxUser?.credenciales?.token,
         user
       )
-
-      console.log(rdxUser.credenciales.user.nombre, "nombre")
-      console.log(rdxUser.credenciales.user.email, "email")
 
       setUser(updatedUser);
       setLoadedData(false);
@@ -154,7 +150,6 @@ export const Profile = () => {
     getMyReservasInfo()
   }
     , [loadedData, token])
-  console.log(reservaInfo, "ReservaInfo")
 
 
   //////////////////////

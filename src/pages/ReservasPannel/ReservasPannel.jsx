@@ -1,15 +1,11 @@
 import "./ReservasPannel.css";
 import { useDispatch, useSelector } from "react-redux";
-// import { useState } from 'react';
+
 import { userData } from "../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { getAllReservas, deleteReservaById } from "../../services/apiCalls";
-import { CButton } from "../../common/CButton/CButton";
-// import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
-import { validacion } from "../../utils/functions";
-import { CInputProfile } from "../../common/CInputProfile/CInputProfile";
-import { Reserva } from "../Reserva/Reserva";
+
 export const ReservasPannel = () => {
 
     const rdxUser = useSelector(userData); ///
@@ -42,7 +38,7 @@ export const ReservasPannel = () => {
         getMyReservasInfo()
     }
         , [loadedData, token])
-    console.log(reservaInfo, "ReservaInfo")
+    
 
 
     //////////////////////
@@ -70,9 +66,10 @@ export const ReservasPannel = () => {
                     <div className="directGames" onClick={() => navigate("/games")}>Ver juegos</div>
                     <div className="directTables" onClick={() => navigate("/tables")}>Ver mesas</div>
                 </div>
+                
                 <div className="allReservasPannelDesign">
-                    TODAS LAS RESERVAS
-                    <div >
+                <div className="titleBackground"> TODAS LAS RESERVAS</div>
+                    <div className="reservasDesignAll">
                         {reservaInfo.length > 0
                             ? (
                                 reservaInfo.map((reserva) => {
