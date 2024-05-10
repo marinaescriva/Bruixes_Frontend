@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { myProfile, updateProfile } from "../../services/apiCalls";
+import { myProfile, updateProfile, getMyreservas, deleteReservaById } from "../../services/apiCalls";
 import { CButton } from "../../common/CButton/CButton";
-import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
+// import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
 import { validacion } from "../../utils/functions";
 import { CInputProfile } from "../../common/CInputProfile/CInputProfile";
-import {decodeToken} from  'react-jwt';
+import { Reserva } from "../Reserva/Reserva";
 
 
 export const Profile = () => {
@@ -23,6 +23,16 @@ export const Profile = () => {
   const [tokenStorage, setTokenStorage] = useState(rdxUser?.credenciales?.token);
   const [loadedData, setLoadedData] = useState(false);
   const [write, setWrite] = useState("disabled");
+
+  const [reservaInfo, setReservaInfo] = useState([]);
+
+  const [reservaInfoData, setReservaInfoData] = useState({
+    idUsuario: "",
+    idMesa: "",
+    idJuego: "",
+    idEvento: "",
+    fechaHoraInicio: ""
+  });
 
 
   useEffect(() => {
@@ -59,14 +69,13 @@ export const Profile = () => {
     }));
   };
 
-
   const inputHandler = (e) => {
-    setUser((prevState) => 
-      ({ 
-        ...prevState, 
-        [e.target.name]: e.target.value 
-      })
-  );
+    setUser((prevState) =>
+    ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    })
+    );
   };
 
   useEffect(() => {
@@ -103,16 +112,12 @@ export const Profile = () => {
   const editProfile = async () => {
 
     try {
-      console.log(user , "user")
 
-      const updatedUser = await updateProfile (
+      const updatedUser = await updateProfile(
         rdxUser?.credenciales?.token,
         user
       )
 
-      console.log(rdxUser.credenciales.user.nombre, "nombre")
-      console.log(rdxUser.credenciales.user.email, "email")
-    
       setUser(updatedUser);
       setLoadedData(false);
       setWrite("disabled");
@@ -128,56 +133,111 @@ export const Profile = () => {
     setLoadedData(false);
   }
 
+  ///////////////////
+
+
+  useEffect(() => {
+    const getMyReservasInfo = async () => {
+
+      try {
+        const fetched = await getMyreservas(token)
+        setReservaInfo(fetched.data)
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getMyReservasInfo()
+  }
+    , [loadedData, token])
+
+
+  //////////////////////
+
+  const deletingReserva = async (reservaId) => {
+
+    try {
+
+      const fetched = await deleteReservaById(token, reservaId)
+
+      if (fetched.success) {
+        setReservaInfo(reservaInfo.filter(item => item.id !== reservaId))
+
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>  <div className="profileDesign">
-      <div> {`Perfil de ${rdxUser.credenciales.user.nombre}`}</div>
-      <CInputProfile
-        className={`inputDesign ${userError.nombreError !== "" ? "inputDesignError" : ""}`}
-        type={"text"}
-        name={"nombre"}
-        placeholder={"nombre"}
-        value={user.nombre || ""}
-        disabled={write}
-        onChangeFunction={(e) => inputHandler(e)}
-        onBlurFunction={(e) => checkError(e)}
-      />
-      <div className="error">{userError.nombreError}</div>
+      <div className="pannelProfile">
+        <div className="tituloProfile"> {`Perfil de ${rdxUser.credenciales.user.nombre}`}</div>
+        <CInputProfile
+          className={`inputDesign ${userError.nombreError !== "" ? "inputDesignError" : ""}`}
+          type={"text"}
+          name={"nombre"}
+          placeholder={"nombre"}
+          value={user.nombre || ""}
+          disabled={write}
+          onChangeFunction={(e) => inputHandler(e)}
+          onBlurFunction={(e) => checkError(e)}
+        />
+        <div className="error">{userError.nombreError}</div>
 
-      <CInputProfile
-        className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
-        type={"email"}
-        name={"email"}
-        placeholder={"email"}
-        value={user.email || ""}
-        disabled={write}
-        onChangeFunction={(e) => inputHandler(e)}
-        onBlurFunction={(e) => checkError(e)}
-      />
-      <div className="error">{userError.emailError}</div>
+        <CInputProfile
+          className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
+          type={"email"}
+          name={"email"}
+          placeholder={"email"}
+          value={user.email || ""}
+          disabled={write}
+          onChangeFunction={(e) => inputHandler(e)}
+          onBlurFunction={(e) => checkError(e)}
+        />
+        <div className="error">{userError.emailError}</div>
 
-      <CInputProfile
-        className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""}`}
-        type={"password"}
-        name={"password"}
-        placeholder={"* * * * * * * *"}
-        value={user.password || ""}
-        disabled={"disabled"}
-        onChangeFunction={(e) => inputHandler(e)}
-        onBlurFunction={(e) => checkError(e)}
-      />
-      <div className="error">{userError.passwordError}</div>
+        <CInputProfile
+          className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""}`}
+          type={"password"}
+          name={"password"}
+          placeholder={"* * * * * * * *"}
+          value={user.password || ""}
+          disabled={"disabled"}
+          onChangeFunction={(e) => inputHandler(e)}
+          onBlurFunction={(e) => checkError(e)}
+        />
+        <div className="error">{userError.passwordError}</div>
 
-      <CButton
-        className={"cButtonDesign"}
-        title={write === "" ? "GUARDAR" : "EDITAR"}
-        functionEmit={write === "" ? editProfile : () => setWrite("")}
-      />
+        <CButton
+          className={"cButtonDesign"}
+          title={write === "" ? "GUARDAR" : "EDITAR"}
+          functionEmit={write === "" ? editProfile : () => setWrite("")}
+        />
 
-      <CButtonNewReserva
-          path={"/reserva"}
-          title={"Nueva reserva"}>
-      </CButtonNewReserva>
+      </div>
+      <div className="misReservasDesign">
+        MIS RESERVAS
+        <div >
+          {reservaInfo.length > 0
+            ? (
+              reservaInfo.map((reserva) => {
+                return (
+                  <div className="profileDesignBack" key={reserva.id}>
+                    <div>Mesa {reserva.idMesa}</div>
+                    <div>{reserva.juego.nombre}</div>
+                    <div>{reserva.idEvento}</div>
+                    <div>{reserva.fechaHoraInicio}</div>
+                    <div className="reservaBorrar" onClick={() => deletingReserva(reserva.id)}> Borrar </div>
+                  </div>
+                )
+              })
+            )
+            : (<div>no hay reservas </div>)
+          }
+        </div>
 
+      </div>
     </div>
     </>
   )

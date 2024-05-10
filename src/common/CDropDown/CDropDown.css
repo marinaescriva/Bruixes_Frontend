@@ -1,7 +1,18 @@
 .CDropDownDesign{
-    color: rgb(169, 103, 17);
-    width: 4em;
+    
     height: 3em;
-/* 
-    background-color: rgb(168, 168, 168); */
+    width: 10em;
+
+    border-radius: 1em;
+
+    font-size:medium;
+    font-weight: bold;
+
+    color: whitesmoke;
+    text-align: center;
+
+    background-color:  rgb(201, 144, 22);
+   
+    margin: 1em;
+
 }

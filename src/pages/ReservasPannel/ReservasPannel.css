@@ -1,18 +1,17 @@
-.adminPannelDesign {
+.reservasPannelDesign {
     width: 100vw;
     height: 80vh;
     overflow-x: hidden;
     overflow-y: auto;
 
     margin-top: 2em;
-
-    background-image: url('src/img/tablero 5.png');
     
+
+    background-image: url('src/img/tablero 1.png');
+    background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-
-    background-color: rgb(255, 255, 255);
+    background-color: white;
 
     display: flex;
     flex-direction: column;
@@ -20,56 +19,23 @@
     justify-content: center;
     align-items: center;
 }
+.reservasDesignAll{
+   padding-bottom:2em;
+}
 
 .titleBackground{
     background-color: rgba(255, 255, 255, 0.367);
     border-radius: 1em;
 }
 
-.adminPannelAllUsers{
+.allReservasPannelDesign {
+    width: 76vw;
+    height: 70vh;
 
-    width: 100vw;
-    height: 80vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-}
-.buttonPannel{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1.4em;
-    padding: 1em;
+    color: rgb(54, 93, 132);
 }
 
-.directGames{
-    width: 17vw;
-    height: 8vh;
-
-    background-color:  rgb(135, 37, 20);
-    color: whitesmoke;
-    border-radius: 1em;
-    font-weight: bold;
-    font-size: medium;
-    margin: 1.2em;
-}
-.directTables{
-    width: 17vw;
-    height: 8vh;
-    margin: 1.2em;
-
-    background-color:  rgb(135, 37, 20);
-    color: whitesmoke;
-    border-radius: 1em;
-    font-weight: bold;
-    font-size: medium;
-}
-
-.userDesign {
+.reservasDesign {
     width: 70vw;
     height: 24vh;
     
@@ -91,13 +57,12 @@
     text-align: center;
 }
 
-.userNombreDesign {
+.tableNombreDesign {
     width: 20vw;
     height: 8vh;
    
     padding: 0.5em;
-    color: whitesmoke;
-  
+
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -107,22 +72,7 @@
 
 }
 
-.userEmailDesign {
-    width: 20vw;
-    height: 8vh;
-  
-    padding: 0.5em;
-    
-    color: whitesmoke;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-
-    text-align: center;
-
-}
-.userBorrar{
+.tableBorrar{
     width: 20vw;
     height: 12vh;
    
@@ -141,8 +91,38 @@
     margin: 2em;
 }
 
-.userBorrar:hover{
-    color:rgb(135, 37, 20);
+.tableBorrar:hover{
+    color: rgb(201, 144, 22);
     background-color: whitesmoke;
     font-weight: bold;
+}
+
+.buttonPannel{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.4em;
+    padding: 1em;
+}
+.directGames{
+    width: 17vw;
+    height: 8vh;
+
+    background-color:  rgb(135, 37, 20);
+    color: whitesmoke;
+    border-radius: 1em;
+    font-weight: bold;
+    font-size: medium;
+    margin: 1.2em;
+}
+.directUsers{
+    width: 17vw;
+    height: 8vh;
+    margin: 1.2em;
+
+    background-color:  rgb(135, 37, 20);
+    color: whitesmoke;
+    border-radius: 1em;
+    font-weight: bold;
+    font-size: medium;
 }

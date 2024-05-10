@@ -8,6 +8,7 @@ import { Profile } from '../Profile/Profile';
 import { Games } from '../Games/Games';
 import { Tables } from '../Tables/Tables';
 import { AdminPannel } from '../AdminPannel/AdminPannel';
+import { ReservasPannel } from '../ReservasPannel/ReservasPannel';
 export const Body = () => {
   return (
     <Routes>
@@ -19,9 +20,13 @@ export const Body = () => {
 
       <Route path='/reserva' element={<Reserva />} />
       <Route path='/profile' element={<Profile />} />
+
       <Route path='/games' element={<Games />} />
       <Route path='/tables' element={<Tables />} />
+      <Route path ='/reservas' element={<ReservasPannel />} />
+
       <Route path='/admin' element={<AdminPannel />} />
+     
       
     </Routes>
   )
