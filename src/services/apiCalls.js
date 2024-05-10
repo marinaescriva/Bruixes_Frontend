@@ -285,3 +285,22 @@ export const getMyreservas = async (token) => {
         return error;
     }
 }
+
+export const deleteReservaById = async (token , id) => {
+  
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  }
+ 
+    try {
+        const response = await fetch(`${root}reservas/${id}`, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
+}

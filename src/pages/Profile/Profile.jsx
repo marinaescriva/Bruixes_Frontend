@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { myProfile, updateProfile, getMyreservas } from "../../services/apiCalls";
+import { myProfile, updateProfile, getMyreservas, deleteReservaById} from "../../services/apiCalls";
 import { CButton } from "../../common/CButton/CButton";
 // import { CButtonNewReserva } from "../../common/CButtonNewReserva/CButtonNewReserva";
 import { validacion } from "../../utils/functions";
@@ -157,6 +157,24 @@ export const Profile = () => {
     , [loadedData, token])
     console.log(reservaInfo, "ReservaInfo")
 
+
+    //////////////////////
+
+    const deletingReserva = async (reservaId) => {
+
+      try {
+  
+        const fetched = await deleteReservaById(token, reservaId)
+  
+        if (fetched.success) {
+          setReservaInfo(reservaInfo.filter(item => item.id !== reservaId))
+  
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
   return (
     <>  <div className="profileDesign">
       <div className="pannelProfile">
@@ -205,17 +223,18 @@ export const Profile = () => {
 
       </div>
       <div className="misReservasDesign">
-        AQUI MIS RESERVAS
+        MIS RESERVAS
         <div >
         {reservaInfo.length > 0
           ? (
             reservaInfo.map((reserva) => {
               return (
                 <div className="profileDesignBack" key={reserva.id}>
-                  <div>{reserva.idMesa}</div>
+                  <div>Mesa {reserva.idMesa}</div>
                   <div>{reserva.juego.nombre}</div>
                   <div>{reserva.idEvento}</div>
                   <div>{reserva.fechaHoraInicio}</div>
+                  <div className="userBorrar" onClick={() => deletingReserva(reserva.id)}> Borrar </div>
                 </div>
               )
             })
@@ -223,10 +242,7 @@ export const Profile = () => {
           : (<div>no hay reservas </div>)
         }
         </div>
-        {/* <CButtonNewReserva
-          path={"/reserva"}
-          title={"Nueva reserva"}>
-      </CButtonNewReserva> */}
+        
       </div>
     </div>
     </>
