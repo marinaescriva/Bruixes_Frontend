@@ -4,20 +4,19 @@
     overflow-x: hidden;
     overflow-y: auto;
 
-    background-image: url('../../img/fondocolores.png');
-    /* background-size:cover; */
+    margin-top: 2em;
+
+    background-image: url('src/img/tablero 4.png');
+    background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: white;
 
     display: flex;
     flex-direction: column;
 
     justify-content: center;
     align-items: center;
-}
-.botonesRedirect{
-    display: flex;
-    flex-direction: row;
 }
 
 .allGames {
@@ -31,12 +30,15 @@
     width: 70vw;
     height: 24vh;
     
-    color: rgb(135, 37, 20);
+    color: whitesmoke;
     font-weight: bold;
-    background-color:rgba(54, 93, 132, 0.482);
-    border-radius: 1em;
+    font-size: medium;
+
+    background-color:rgba(201, 144, 22, 0.995);
+    border-radius: 2em;
 
     margin: 0.8em;
+    padding: 1em;
 
     display: flex;
     align-items: center;
@@ -79,23 +81,55 @@
 }
 .gameBorrar{
     width: 20vw;
-    height: 8vh;
-
+    height: 12vh;
+   
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 
     text-align: center;
-    margin: 1em;
 
     color: whitesmoke;
-    background-color:  rgb(201, 144, 22);
+    background-color:  rgb(54, 93, 132);
     font-weight: bold;
+
+    border-radius: 1.3em;
+    margin: 2em;
 }
 
 .gameBorrar:hover{
     color: rgb(201, 144, 22);
     background-color: whitesmoke;
     font-weight: bold;
+}
+
+.buttonPannel{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.4em;
+    padding: 1em;
+}
+.directGames{
+    width: 17vw;
+    height: 8vh;
+
+    background-color:  rgb(135, 37, 20);
+    color: whitesmoke;
+    border-radius: 1em;
+    font-weight: bold;
+    font-size: medium;
+    margin: 1.2em;
+}
+.directTables{
+    width: 17vw;
+    height: 8vh;
+    margin: 1.2em;
+
+    background-color:  rgb(135, 37, 20);
+    color: whitesmoke;
+    border-radius: 1em;
+    font-weight: bold;
+    font-size: medium;
 }

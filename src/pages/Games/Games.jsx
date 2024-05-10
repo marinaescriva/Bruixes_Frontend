@@ -45,10 +45,10 @@ export const Games = () => {
   return (
     <div>
       <div className="gamesDesign">
-        <div className = "botonesRedirect">
-        <div className="gameBorrar" onClick={() => navigate("/admin")}>Ver usuarios</div>
-        <div className="gameBorrar" onClick={() => navigate("/tables")}>Ver mesas</div>
-        </div>
+      <div className="buttonPannel">
+                <div className="directGames" onClick={() => navigate("/admin")}>Ver usuarios</div>
+                <div className="directTables" onClick={() => navigate("/tables")}>Ver mesas</div>
+            </div>
 
         <div className="allUsers">
           {games.map((game) => (

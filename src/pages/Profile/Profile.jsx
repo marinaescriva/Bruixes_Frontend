@@ -234,7 +234,7 @@ export const Profile = () => {
                   <div>{reserva.juego.nombre}</div>
                   <div>{reserva.idEvento}</div>
                   <div>{reserva.fechaHoraInicio}</div>
-                  <div className="userBorrar" onClick={() => deletingReserva(reserva.id)}> Borrar </div>
+                  <div className="reservaBorrar" onClick={() => deletingReserva(reserva.id)}> Borrar </div>
                 </div>
               )
             })

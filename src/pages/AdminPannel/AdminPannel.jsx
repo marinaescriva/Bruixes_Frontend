@@ -42,18 +42,22 @@ export const AdminPannel = () => {
 
     return (
         <div className="adminPannelDesign">
-            <div className="userBorrar" onClick={() => navigate("/games")}>Ver juegos</div>
+            <div className="buttonPannel">
+                <div className="directGames" onClick={() => navigate("/games")}>Ver juegos</div>
+                <div className="directTables" onClick={() => navigate("/tables")}>Ver mesas</div>
+            </div>
+
             <div className="allUsers"> Todos los usuarios
-            <div className="adminPannelAllUsers">
-                {users.map((user) => (
-                    
-                    <div key={user.id} className="userDesign">
-                        <div className="userNombreDesign">{user.nombre}</div>
-                        <div className="userEmailDesign">{user.email}</div>
-                        <div className="userBorrar" onClick={() => deletingUser(user.id)}> Borrar </div>
-                    </div>
-                    
-                ))}
+                <div className="adminPannelAllUsers">
+                    {users.map((user) => (
+
+                        <div key={user.id} className="userDesign">
+                            <div className="userNombreDesign">{user.nombre}</div>
+                            <div className="userEmailDesign">{user.email}</div>
+                            <div className="userBorrar" onClick={() => deletingUser(user.id)}> Borrar </div>
+                        </div>
+
+                    ))}
                 </div>
             </div>
         </div>

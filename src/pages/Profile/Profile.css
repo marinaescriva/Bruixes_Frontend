@@ -18,9 +18,14 @@
 }
 .profileDesignBack{
  
- padding: 2em;
- margin: 1em;
- color:rgb(135, 37, 20);
+    border-radius: 2em;
+    color:  rgb(135, 37, 20);
+    padding: 1em;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 
@@ -43,8 +48,9 @@
 
 }
 .misReservasDesign{
-    background-color:  rgba(255, 255, 255, 0.889);
-    border-radius: 2em;margin-top: 1em;
+    background-color: rgba(255, 255, 255, 0.889);
+    border-radius: 2em;
+    margin: 1em;
     color:rgb(54, 93, 132);
     font-weight: bold;
     padding: 1em;
@@ -53,4 +59,22 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+.reservaBorrar{
+    width: 20vw;
+    height: 12vh;
+   
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+
+    color: whitesmoke;
+    background-color:  rgb(54, 93, 132);
+    font-weight: bold;
+
+    border-radius: 1.3em;
+    margin: 2em;
 }

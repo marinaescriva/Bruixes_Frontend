@@ -45,19 +45,19 @@ export const Tables = () => {
 
   return (
     <div>
-      <div className="gamesDesign">
-        <div className = "botonesRedirect">
-        <div className="gameBorrar" onClick={() => navigate("/admin")}>Ver usuarios</div>
-        <div className="gameBorrar" onClick={() => navigate("/games")}>Ver juegos</div>
+      <div className="tablesDesign">
+        <div className = "buttonPannel">
+        <div className="directUsers" onClick={() => navigate("/admin")}>Ver usuarios</div>
+        <div className="directGames" onClick={() => navigate("/games")}>Ver juegos</div>
         </div>
 
-        <div className="allUsers">
+        <div className="allTables">
           {tables.map((table) => (
-            <div className="gameDesign" key={table.id}>
+            <div className="tableDesign" key={table.id}>
 
-              <div className="gameNombreDesign"> {table.id}</div>
+              <div className="tableNombreDesign"> {table.id}</div>
 
-              <div className="gameBorrar" onClick={() => deletingTable(table.id)}> Borrar </div>
+              <div className="tableBorrar" onClick={() => deletingTable(table.id)}> Borrar </div>
             </div>
           ))}
         </div>
