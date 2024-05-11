@@ -115,18 +115,18 @@ Deletes a reservation by its ID (Super Admin or owner only).
 
 </details>
 
-### Video 
+## Video 
 
 [Bruixes i Fades APP on Youtube](https://youtu.be/RH36f2kh5FM)
 
 
-### Future features
+## Future features
 
 - Add events to join
 - Limit reservations choose diferent params like date/table/game to allow more options
 - Add more information about games ( players , duration..etc)
 
-### Author
+## Author
 
 - Marina Escrivà 
 
